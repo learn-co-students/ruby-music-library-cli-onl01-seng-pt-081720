@@ -1,5 +1,4 @@
 class MusicLibraryController
-  attr_accessor :Song, :Artist, :Genre
 
   def initialize(path = "./db/mp3s")
     miobj = MusicImporter.new(path)
@@ -53,13 +52,7 @@ class MusicLibraryController
     puts "Please enter the name of an artist:"
     input = gets.strip
     if res = Artist.find_by_name(input)
-      res.songs.sort do |a, b|
-        a.name <=> b.name
-      end
-      binding.pry
-      res.each_with_index do |song, i|
-        puts "#{i+1}. #{song.name} - #{song.genre.name}"
-      end
+      res.songs.sort {|a, b| a.name <=> b.name}.each_with_index {|s,i| puts "#{i+1}. #{s.name} - #{s.genre.name}" }
     end
   end
 
