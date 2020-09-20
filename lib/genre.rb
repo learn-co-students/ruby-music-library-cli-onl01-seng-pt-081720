@@ -5,7 +5,7 @@ class Genre
 
   attr_accessor :name, :songs
   @@all = []
-  
+
   def initialize(name)
     @name = name
     @songs = []
@@ -25,8 +25,7 @@ class Genre
   end
 
   def self.create(name)
-    new_genre = self
-    @@all << new_genre
+    new_genre = self.new(name)
     new_genre
   end
 

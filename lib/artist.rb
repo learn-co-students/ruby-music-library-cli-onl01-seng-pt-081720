@@ -2,7 +2,7 @@ require "pry"
 
 class Artist
   extend Concerns::Findable
-  
+
   attr_accessor :name, :songs, :genre
   @@all = []
 
@@ -25,8 +25,7 @@ class Artist
   end
 
   def self.create(name)
-    new_artist = self
-    @@all << new_artist
+    new_artist = self.new(name)
     new_artist
   end
 
