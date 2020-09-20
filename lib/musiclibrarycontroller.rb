@@ -50,11 +50,25 @@ class MusicLibraryController
 
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
-    input = gets.strip
+    input = gets.chomp
     if res = Artist.find_by_name(input)
       res.songs.sort {|a, b| a.name <=> b.name}.each_with_index {|s,i| puts "#{i+1}. #{s.name} - #{s.genre.name}" }
     end
   end
 
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.chomp
+    if res = Genre.find_by_name(input)
+      res.songs.sort {|a, b| a.name <=> b.name}.each_with_index {|s,i| puts "#{i+1}. #{s.artist.name} - #{s.name}" }
+    end
+  end
+
+  def play_song
+    puts "Which song number would you like to play?"
+    list = Song.all.sort {|a, b| a.name <=> b.name}
+    input = gets.chomp.to_i+1
+    puts "Playing #{list[input].name} by #{list[input].artist.name}"
+  end
 
 end
