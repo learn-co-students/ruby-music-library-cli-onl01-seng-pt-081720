@@ -1,5 +1,5 @@
 class MusicLibraryController
-
+  attr_accessor :Song
 
   def initialize(path = "./db/mp3s")
     miobj = MusicImporter.new(path)
@@ -23,7 +23,14 @@ class MusicLibraryController
   end
 
   def list_songs
-    binding.pry
+    sorted = Song.all.sort do |a, b|
+      a.name <=> b.name
+    end
+    
+    sorted.each_with_index do |song, i|
+      binding.pry
+      puts "#{i+1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
 
 
