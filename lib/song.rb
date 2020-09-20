@@ -1,6 +1,7 @@
 require "pry"
 
 class Song
+
   attr_accessor :name, :genre
   attr_reader :artist#,:genre
 
@@ -30,7 +31,6 @@ class Song
 
   def self.create(name)
     new_song = self.new(name)
-    @@all << new_song
     new_song
   end
 
@@ -55,7 +55,7 @@ class Song
 
   def self.find_or_create_by_name(name)
     if find_by_name(name)
-      return name
+      return find_by_name(name)
     else
       self.create(name)
     end
