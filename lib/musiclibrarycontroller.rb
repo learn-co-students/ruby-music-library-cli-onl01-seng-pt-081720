@@ -35,7 +35,6 @@ class MusicLibraryController
     sorted = Artist.all.sort do |a, b|
       a.name <=> b.name
     end
-
     sorted.each_with_index do |art, i|
       puts "#{i+1}. #{art.name}"
     end
@@ -45,14 +44,23 @@ class MusicLibraryController
     sorted = Genre.all.sort do |a, b|
       a.name <=> b.name
     end
-
     sorted.each_with_index do |gen, i|
       puts "#{i+1}. #{gen.name}"
     end
   end
 
   def list_songs_by_artist
-    
+    puts "Please enter the name of an artist:"
+    input = gets.strip
+    if res = Artist.find_by_name(input)
+      res.songs.sort do |a, b|
+        a.name <=> b.name
+      end
+      binding.pry
+      res.each_with_index do |song, i|
+        puts "#{i+1}. #{song.name} - #{song.genre.name}"
+      end
+    end
   end
 
 
