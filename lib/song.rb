@@ -74,7 +74,6 @@ class Song
 
   def self.create_from_filename(filename)
     news = self.new_from_filename(filename)
-    @@all << news
   end
 
 end
