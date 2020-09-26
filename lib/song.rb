@@ -11,4 +11,19 @@ class Song
     @@all 
   end 
   
+  def self.destroy_all 
+    @@all.clear 
+  end 
+  
+  def save
+    @@all << self 
+  end 
+  
+  def self.create 
+    @name = song.new 
+    @@all << song.new 
+    @@all 
+  end 
+    
+  
 end 
