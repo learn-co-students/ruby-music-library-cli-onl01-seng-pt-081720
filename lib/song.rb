@@ -59,14 +59,15 @@ class Song
         new_artist = song [0]
         new_genre = song[2].chomp(".mp3")
         
-        song = find_or_create_by_name(new_name)
-        song.artist = Artist.find_or_create_by_name(new_artist)
-        song.genre = Genre.find_or_create_by_name(new_genre)
+        
+        new_artist = Artist.find_or_create_by_name(new_artist)
+        new_genre = Genre.find_or_create_by_name(new_genre)
+        song = self.new(new_name, new_artist, new_genre)
         song
     end
 
     def self.create_from_filename(filename)
-        @@all << new_from_filename(filename)
+        new_from_filename(filename)
     end
 
 
