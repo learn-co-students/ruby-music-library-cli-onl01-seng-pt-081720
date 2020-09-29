@@ -5,6 +5,7 @@ class Artist
   def initialize(name)
     @name=name
     @songs = []
+    save
   end
 
   def save
@@ -20,9 +21,8 @@ class Artist
   end
 
   def self.create(name)
-    c = self.new(name)
-    c.save
-    c
+   new(name).tap {|a|
+  a.save}
   end
 
   def songs
@@ -40,6 +40,12 @@ class Artist
     self.songs.collect {|s|
     s.genre}.uniq
   end
+
+  def self.count
+    @@all.size
+  end
+
+
   #
   # def name
   #   self.name
