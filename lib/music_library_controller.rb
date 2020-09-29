@@ -20,8 +20,16 @@ class MusicLibraryController
     puts "What would you like to do?"
     
     input = gets.strip
+    
+    case input 
+    when "list_songs"
+      list_songs
+      
+    
+    
     end 
   end 
+end 
   
   def list_songs 
     Song.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |s, i|
@@ -73,3 +81,4 @@ class MusicLibraryController
     puts "Playing #{song.name} by #{song.artist.name}" if song
   end
 end 
+
