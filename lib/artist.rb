@@ -21,8 +21,7 @@ class Artist
   end
 
   def self.create(name)
-   new(name).tap {|a|
-  a.save}
+   new(name)
   end
 
   def songs
@@ -45,9 +44,4 @@ class Artist
     @@all.size
   end
 
-
-  #
-  # def name
-  #   self.name
-  # end
 end

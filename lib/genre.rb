@@ -21,9 +21,7 @@ class Genre
     end
 
     def self.create(name)
-      b = self.new(name)
-      b.save
-      b
+      self.new(name)
     end
 
     def artists
@@ -35,9 +33,4 @@ class Genre
       @songs
     end
 
-
-    #
-    # def name
-    #   self.name
-    # end
 end
