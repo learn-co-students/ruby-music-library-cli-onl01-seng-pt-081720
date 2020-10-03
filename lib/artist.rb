@@ -1,6 +1,7 @@
 
 class Artist
   attr_accessor :name
+  attr_reader :songs
 
   @@all = []
 
@@ -27,9 +28,6 @@ class Artist
     artist
   end
 
-  def songs
-    @songs
-  end
 
   def add_song(song)
     if song.artist.nil? # Is this if statement necessary?
@@ -39,8 +37,7 @@ class Artist
   end
 
   def genres
-    Genre.all.select do |genre|
-       genre.artists.includes?(self)
-    end
+    #songs.collect {|song| song.genre}
+    songs.collect{ |s| s.genre }.uniq
   end
 end
