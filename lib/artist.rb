@@ -30,10 +30,11 @@ class Artist
 
 
   def add_song(song)
-    if song.artist.nil? # Is this if statement necessary?
+    if song.artist.nil?
       song.artist = self
-      self.songs << song
     end
+
+    self.songs << song unless songs.include?(song)
   end
 
   def genres

@@ -9,6 +9,10 @@ class Genre
     @songs = []
   end
 
+  def artists
+    songs.collect{ |s| s.artist }.uniq
+  end
+
   def add_song(song)
     @songs << song unless @songs.include?(song)
   end
