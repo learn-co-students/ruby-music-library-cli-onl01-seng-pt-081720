@@ -1,4 +1,4 @@
-#require `pry`
+
 class Artist
   attr_accessor :name
 
@@ -32,9 +32,15 @@ class Artist
   end
 
   def add_song(song)
-    if song.artist == nil
+    if song.artist.nil? # Is this if statement necessary?
       song.artist = self
       self.songs << song
+    end
+  end
+
+  def genres
+    Genre.all.select do |genre|
+       genre.artists.includes?(self)
     end
   end
 end
