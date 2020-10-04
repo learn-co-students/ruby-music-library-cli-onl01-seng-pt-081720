@@ -44,20 +44,20 @@ class Song
     song
   end
 
-  def self.find_by_name(name)
-    @@all.detect {|a| a.name == name}
+  def self.new_from_filename(file)
+      song_info = file.chomp(".mp3").split(" - ")
+      song = Song.new(song_info[1])
+      song.artist = song_info[0]
+      song.genre = song_info[2]
+      song
   end
 
-  def self.find_or_create_by_name(name)
-    song = find_by_name(name)
-      if song
-        song
-    else
-        self.create(name)
-      end
-    end
-
-
-
-
+  def self.create_from_filename(file)
+    song_info = file.chomp(".mp3").split(" - ")
+    song = Song.new(song_info[1])
+    song.artist = song_info[0]
+    song.genre = song_info[2]
+    @@all << song
+    song
+  end
 end
