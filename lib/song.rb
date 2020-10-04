@@ -47,16 +47,13 @@ class Song
   def self.new_from_filename(file)
       song_info = file.chomp(".mp3").split(" - ")
       song = Song.new(song_info[1])
-      song.artist = song_info[0]
-      song.genre = song_info[2]
+      song.artist= Artist.find_or_create_by_name(song_info[0])
+      song.genre = Genre.find_or_create_by_name(song_info[2])
       song
   end
 
   def self.create_from_filename(file)
-    song_info = file.chomp(".mp3").split(" - ")
-    song = Song.new(song_info[1])
-    song.artist = song_info[0]
-    song.genre = song_info[2]
+    song = new_from_filename(file)
     @@all << song
     song
   end
